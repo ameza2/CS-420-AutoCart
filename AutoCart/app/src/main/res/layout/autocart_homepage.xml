@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/autocart_logo"
         android:layout_width="357dp"
         android:layout_height="243dp"
         android:layout_marginStart="27dp"
@@ -48,13 +48,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/settingsIcon"
         android:layout_width="56dp"
         android:layout_height="53dp"
         android:layout_marginStart="21dp"
         android:layout_marginTop="19dp"
         android:backgroundTint="#00FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintBottom_toTopOf="@+id/autocart_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/settingsicon_foreground" />

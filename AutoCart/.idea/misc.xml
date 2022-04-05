@@ -7,7 +7,9 @@
         <entry key="app/src/main/res/drawable/SettingIcon_background.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/drawable/SettingIcon_foreground.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3003672928903765" />
+        <entry key="app/src/main/res/layout/autocart_homepage.xml" value="0.29444444444444445" />
         <entry key="app/src/main/res/layout/autocart_ingredientpage.xml" value="0.26595760506922844" />
+        <entry key="app/src/main/res/layout/autocart_shoppingpage.xml" value="0.29444444444444445" />
       </map>
     </option>
   </component>
