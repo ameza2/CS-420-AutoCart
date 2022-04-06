@@ -65,26 +65,29 @@
         android:layout_marginStart="124dp"
         android:layout_marginTop="145dp"
         android:layout_marginEnd="124dp"
+        android:layout_marginBottom="523dp"
         android:text="Ingredients"
         android:textAlignment="center"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <ListView
         android:id="@+id/outputList"
-        android:layout_width="297dp"
-        android:layout_height="321dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="57dp"
-        android:text="TextView"
+        android:layout_width="385dp"
+        android:layout_height="363dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="227dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="141dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ingredientTitle" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

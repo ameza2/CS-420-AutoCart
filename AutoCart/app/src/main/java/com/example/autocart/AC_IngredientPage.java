@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Button;
 import java.text.SimpleDateFormat;
@@ -19,9 +22,10 @@ import android.text.TextUtils;
 
 public class AC_IngredientPage extends AppCompatActivity {
 
-    ArrayList<String> ingredientList;
+    ArrayList<DataIngredient> ingredientList;
     Button addIngredient;
-    TextView output;
+    ListView output;
+    IngredientListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,12 @@ public class AC_IngredientPage extends AppCompatActivity {
 
         ingredientList = new ArrayList<>();
         addIngredient = (Button)findViewById(R.id.ingredientAdd);
-        output = (TextView)findViewById(R.id.outputList);
+        output = (ListView)findViewById(R.id.outputList);
 
-
-        output.setText(readFile());
+        ingredientList.clear();
+        readFile();
+        adapter = new IngredientListAdapter(this, R.layout.adapter_view_layout, ingredientList);
+        output.setAdapter(adapter);
 
         addIngredient.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -47,32 +53,34 @@ public class AC_IngredientPage extends AppCompatActivity {
         });
     }
 
-    private String readFile() {
-
+    private void readFile() {
+        ArrayList<String> holder = new ArrayList<>();
+        holder.clear();
         File fileEvents = new File(AC_IngredientPage.this.getFilesDir() + "/ingredient/list");
 
         if(!fileEvents.exists()) {
 
         }
         else {
-            StringBuilder text = new StringBuilder();
             try {
                 BufferedReader br = new BufferedReader(new FileReader(fileEvents));
                 String line;
 
                 while ((line = br.readLine()) != null){
-                    ingredientList.add(line);
-                    text.append(line);
-                    text.append('\n');
+                    String[] temp = line.split(",");
+                    for(String t : temp)
+                        holder.add(t);
+                    for(int counter = 0; counter < holder.size(); counter += 2) {
+//                        ingredientList.add(new DataIngredient(holder.get(counter), holder.get(counter + 1)));
+                        System.out.println(holder.size());
+                        System.out.println(holder.get(counter));
+                        System.out.println(holder.get(counter+1));
+                    }
                 }
                 br.close();
             } catch (IOException e) {
             }
         }
-
-        String result = TextUtils.join("\n", ingredientList);
-
-        return result;
     }
 
     @Override

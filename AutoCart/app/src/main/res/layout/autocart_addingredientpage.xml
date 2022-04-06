@@ -6,34 +6,18 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/expDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="100dp"
-        android:ems="10"
-        android:hint="Date"
-        android:inputType="date"
-        android:textColorHint="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expTitle" />
-
-    <EditText
         android:id="@+id/productName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
-        android:layout_marginTop="2dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="435dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         android:textColorHint="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTitle" />
 
@@ -42,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginTop="83dp"
         android:layout_marginEnd="150dp"
         android:text="Expiration Date *"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,13 +39,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="115dp"
+        android:layout_marginTop="117dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="571dp"
         android:text="Add Ingredient"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nameTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -71,23 +55,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="155dp"
-        android:layout_marginBottom="482dp"
         android:text="Product Name *"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addIngredientTitle" />
 
     <Button
         android:id="@+id/addIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="542dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="141dp"
         android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/dateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginEnd="161dp"
+        android:text="Date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expDate" />
+        app:layout_constraintTop_toBottomOf="@+id/expTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
