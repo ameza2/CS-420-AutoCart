@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Button;
 import java.text.SimpleDateFormat;
@@ -18,7 +16,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import android.text.TextUtils;
+import android.util.Log;
 
 public class AC_IngredientPage extends AppCompatActivity {
 
@@ -40,7 +38,6 @@ public class AC_IngredientPage extends AppCompatActivity {
         addIngredient = (Button)findViewById(R.id.ingredientAdd);
         output = (ListView)findViewById(R.id.outputList);
 
-        ingredientList.clear();
         readFile();
         adapter = new IngredientListAdapter(this, R.layout.adapter_view_layout, ingredientList);
         output.setAdapter(adapter);
@@ -66,18 +63,19 @@ public class AC_IngredientPage extends AppCompatActivity {
                 BufferedReader br = new BufferedReader(new FileReader(fileEvents));
                 String line;
 
-                while ((line = br.readLine()) != null){
+                while ((line = br.readLine()) != null) {
                     String[] temp = line.split(",");
-                    for(String t : temp)
+                    for (String t : temp) {
                         holder.add(t);
-                    for(int counter = 0; counter < holder.size(); counter += 2) {
-//                        ingredientList.add(new DataIngredient(holder.get(counter), holder.get(counter + 1))); for some reason holder call is not working??
-                        //ingredientList.add(new DataIngredient("test", "3/12/23"));
-                        System.out.println(holder.size());
-                        System.out.println(holder.get(counter));
-                        System.out.println(holder.get(counter+1));
                     }
                 }
+                for(int counter = 0; counter < holder.size(); counter += 2) {
+                    ingredientList.add(new DataIngredient(holder.get(counter), holder.get(counter + 1)));
+                    //System.out.println(holder.size());
+                    //System.out.println(holder.get(counter));
+                    //System.out.println(holder.get(counter+1));
+                }
+
                 br.close();
             } catch (IOException e) {
             }

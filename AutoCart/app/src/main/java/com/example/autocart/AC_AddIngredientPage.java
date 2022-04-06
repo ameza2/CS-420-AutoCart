@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Calendar;
+import android.util.Log;
 
 public class AC_AddIngredientPage extends AppCompatActivity {
 
@@ -52,17 +53,17 @@ public class AC_AddIngredientPage extends AppCompatActivity {
                 dialog.show();
             }
         });
+
         dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-//                Log.d("valid","onDateSet: mm/dd/yyy: " + month + " / " + day + " / " + year);
+                //Log.d("valid","onDateSet: mm/dd/yyy: " + month + " / " + day + " / " + year);
 
                 date = month + "/" + day + "/" + year;
                 dateButton.setText(date);
             }
         };
-
 
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

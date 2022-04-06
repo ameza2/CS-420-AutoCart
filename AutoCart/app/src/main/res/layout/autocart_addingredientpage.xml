@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="100dp"
         android:ems="10"
         android:hint="Name"
@@ -17,7 +18,6 @@
         android:minHeight="48dp"
         android:textColorHint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTitle" />
 
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
-        android:layout_marginTop="83dp"
+        android:layout_marginTop="82dp"
         android:layout_marginEnd="150dp"
         android:text="Expiration Date *"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,44 +39,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="117dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="571dp"
+        android:layout_marginBottom="70dp"
         android:text="Add Ingredient"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/nameTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/nameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="157dp"
-        android:layout_marginTop="70dp"
         android:layout_marginEnd="155dp"
+        android:layout_marginBottom="482dp"
         android:text="Product Name *"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addIngredientTitle" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/addIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
-        android:layout_marginTop="542dp"
+        android:layout_marginTop="94dp"
         android:layout_marginEnd="162dp"
-        android:layout_marginBottom="141dp"
         android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/dateButton" />
 
     <Button
         android:id="@+id/dateButton"

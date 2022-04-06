@@ -10,41 +10,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="62dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="261dp"
-        android:layout_marginBottom="85dp"
         android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_dynamic" />
+        app:layout_constraintTop_toBottomOf="@+id/outputList" />
 
     <Button
         android:id="@+id/ingredientRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="255dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="85dp"
         android:text="Remove"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/_dynamic" />
+        app:layout_constraintTop_toBottomOf="@+id/outputList" />
 
     <ImageButton
         android:id="@+id/ingredientSort"
         android:layout_width="49dp"
         android:layout_height="58dp"
-        android:layout_marginStart="298dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="42dp"
         android:backgroundTint="#00FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
 
@@ -63,17 +57,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="145dp"
         android:layout_marginEnd="124dp"
-        android:layout_marginBottom="523dp"
+        android:layout_marginBottom="39dp"
         android:text="Ingredients"
         android:textAlignment="center"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/outputList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/outputList"
