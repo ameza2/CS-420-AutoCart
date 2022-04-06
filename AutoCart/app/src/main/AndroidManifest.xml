@@ -18,6 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".AC_IngredientPage"
+            android:exported="false" />
+        <activity
+            android:name=".AC_ShoppingPage"
+            android:exported="false" />
+        <activity
+            android:name=".AC_SettingsPage"
+            android:exported="false" />
+
     </application>
 
 </manifest>
