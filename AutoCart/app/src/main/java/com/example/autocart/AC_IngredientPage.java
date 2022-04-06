@@ -74,4 +74,10 @@ public class AC_IngredientPage extends AppCompatActivity {
 
         return result;
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AC_IngredientPage.this, MainActivity.class);
+        startActivity(intent);
+    }
 }
