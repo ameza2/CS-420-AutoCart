@@ -28,6 +28,9 @@
         <activity
             android:name=".AC_SettingsPage"
             android:exported="false" />
+        <activity
+            android:name=".AC_AddIngredientPage"
+            android:exported="false" />
 
     </application>
 
