@@ -71,7 +71,8 @@ public class AC_IngredientPage extends AppCompatActivity {
                     for(String t : temp)
                         holder.add(t);
                     for(int counter = 0; counter < holder.size(); counter += 2) {
-//                        ingredientList.add(new DataIngredient(holder.get(counter), holder.get(counter + 1)));
+//                        ingredientList.add(new DataIngredient(holder.get(counter), holder.get(counter + 1))); for some reason holder call is not working??
+                        //ingredientList.add(new DataIngredient("test", "3/12/23"));
                         System.out.println(holder.size());
                         System.out.println(holder.get(counter));
                         System.out.println(holder.get(counter+1));
