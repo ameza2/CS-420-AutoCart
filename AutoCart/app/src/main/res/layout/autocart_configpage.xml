@@ -5,13 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Under Development"
+    <Button
+        android:id="@+id/softwareDetailsButtonID"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="383dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="580dp"
+        android:gravity="left"
+        android:text="Software Details                                   >>>"
+        android:textColor="@color/gray_500"
+        android:textSize="15sp"
+        app:iconTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/darkMode"
+        android:layout_width="393dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="8dp"
+        android:checked="false"
+        android:text="Night Mode"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/softwareDetailsButtonID" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/boldFont"
+        android:layout_width="395dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="6dp"
+        android:text="Bold Font"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/darkMode" />
 </androidx.constraintlayout.widget.ConstraintLayout>
