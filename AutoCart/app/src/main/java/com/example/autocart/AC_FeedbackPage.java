@@ -63,7 +63,7 @@ public class AC_FeedbackPage extends AppCompatActivity {
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"PLUSHassistance@gmail.com"});
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"autocart.assistance@gmail.com"});
                 email.putExtra(Intent.EXTRA_SUBJECT, "AutoCart Feedback: " + stars + "/5 star rating");
                 email.putExtra(Intent.EXTRA_TEXT, feedbackContent.getText().toString());
 
