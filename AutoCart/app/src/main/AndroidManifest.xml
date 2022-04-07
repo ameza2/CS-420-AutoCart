@@ -31,6 +31,15 @@
         <activity
             android:name=".AC_AddIngredientPage"
             android:exported="false" />
+        <activity
+            android:name=".AC_ConfigPage"
+            android:exported="false" />
+        <activity
+            android:name=".AC_FeedbackPage"
+            android:exported="false" />
+        <activity
+            android:name=".AC_SupportPage"
+            android:exported="false" />
 
     </application>
 
