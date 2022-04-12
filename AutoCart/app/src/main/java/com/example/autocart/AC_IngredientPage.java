@@ -10,6 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,6 +34,7 @@ public class AC_IngredientPage extends AppCompatActivity {
 
     Button addIngredient;
     Button removeIngredient;
+    ImageButton sortIngredient;
     ListView output;
 
     ArrayAdapter<String> adapter;
@@ -47,11 +52,38 @@ public class AC_IngredientPage extends AppCompatActivity {
 
         addIngredient = (Button)findViewById(R.id.ingredientAdd);
         removeIngredient = (Button)findViewById(R.id.ingredientRemove);
+        sortIngredient = (ImageButton)findViewById(R.id.ingredientSort);
         output = (ListView)findViewById(R.id.outputList);
 
         readFile();
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredientList);
         output.setAdapter(adapter);
+
+        // Dropdown Menu Logic //
+
+        // Setting onClick behavior to the button
+        sortIngredient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Initializing the popup menu and giving the reference as current context
+                PopupMenu popupMenu = new PopupMenu(AC_IngredientPage.this, sortIngredient);
+
+                // Inflating popup menu from popup_menu.xml file
+                popupMenu.getMenuInflater().inflate(R.menu.autocart_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        // Toast message on menu item clicked
+                        Toast.makeText(AC_IngredientPage.this, "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+                // Showing the popup menu
+                popupMenu.show();
+            }
+        });
+
+        ///////////////////////
 
         ///// Color Logic /////
 
@@ -77,8 +109,6 @@ public class AC_IngredientPage extends AppCompatActivity {
                 //Comparing dates
                 long difference = Math.abs(date1.getTime() - date2.getTime());
                 long differenceDates = difference / (24 * 60 * 60 * 1000);
-                //String dayDifference = Long.toString(differenceDates);
-
 
                 if(date1.compareTo(date2) > 0) {
                     Log.d("option 1","Expired: Red");
