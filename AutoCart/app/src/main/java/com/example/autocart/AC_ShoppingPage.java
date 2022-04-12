@@ -18,9 +18,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.ArrayList;
-import android.util.Log;
 
 public class AC_ShoppingPage extends AppCompatActivity {
+
+    /* Variable Initialization */
 
     ArrayList<String> shoppingList;
     ArrayAdapter<String> adapter;
@@ -35,74 +36,73 @@ public class AC_ShoppingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.autocart_shoppingpage);
 
-        shoppingList = new ArrayList<>();
+        /* Fetch Page Activity */
 
         addShopping = (Button) findViewById(R.id.shoppingAdd);
         removeShopping = (Button) findViewById(R.id.shoppingRemove);
         sortShopping = (ImageButton) findViewById(R.id.shoppingSort);
-        output = (ListView) findViewById(R.id.outputList2);
+        output = (ListView) findViewById(R.id.shoppingOutput);
+
+        shoppingList = new ArrayList<>(); // create shopping list
+
+        /* Display Shopping File to ListView */
 
         readFile();
-
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shoppingList);
-
         output.setAdapter(adapter);
 
-        // Dropdown Menu Logic //
+        /* Sorting Dropdown Menu */
 
-        // Setting onClick behavior to the button
         sortShopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // Initializing the popup menu and giving the reference as current context
                 PopupMenu popupMenu = new PopupMenu(AC_ShoppingPage.this, sortShopping);
 
                 // Inflating popup menu from popup_menu.xml file
                 popupMenu.getMenuInflater().inflate(R.menu.autocart_menu, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        // Toast message on menu item clicked
-//                        Toast.makeText(AC_ShoppingPage.this, "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+
+                        /* Alphabetical Sort */
 
                         if (menuItem.getTitle().equals("Alphabetically")) {
-                            //Sort shoppingList
-                            Collections.sort(shoppingList);
+                            Collections.sort(shoppingList); // Sort Shopping List (A-Z)
 
-                            //Parse shoppingList to save
-                            ArrayList<String> temp4 = new ArrayList<>();
-                            for (int j = 0; j < shoppingList.size(); j++) {
-                                temp4.add(shoppingList.get(j));
-                            }
-
-                            //Save file
-                            File file = new File(AC_ShoppingPage.this.getFilesDir(), "shopping");
-                            if (!file.exists()) {
-                                file.mkdir();
+                            // Export Sorted List to File //
+                            File file = new File(AC_ShoppingPage.this.getFilesDir(), "shopping"); // open shopping directory
+                            if (!file.exists()) { // if statement: if directory does not exist, then create new directory
+                                file.mkdir(); // make shopping directory
                             }
                             try {
-                                File gpxfile = new File(file, "list");
-                                FileWriter writer = new FileWriter(gpxfile, false);
-                                for (int k = 0; k < temp4.size(); k++) {
-                                    writer.write(temp4.get(k) + "\n");
+                                File gpxfile = new File(file, "list"); // create/open shopping list file
+                                FileWriter writer = new FileWriter(gpxfile, false); // overwrite existing file
+                                for (int k = 0; k < shoppingList.size(); k++) { // export sorted shopping list
+                                    writer.write(shoppingList.get(k) + "\n");
                                 }
-                                writer.close();
+                                writer.close(); // close shopping list file
 
                             } catch (Exception e) {
                             }
                         }
 
-                        //Refresh Page
+                        // Refresh ListView : Refresh Page //
+
                         Intent intent = new Intent(AC_ShoppingPage.this, AC_ShoppingPage.class);
                         startActivity(intent);
 
                         return true;
                     }
                 });
-                // Showing the popup menu
-                popupMenu.show();
+
+                popupMenu.show(); // show sorting algorithm popup menu
             }
         });
+
+        /* Add Shopping Button */
 
         addShopping.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -110,6 +110,8 @@ public class AC_ShoppingPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        /* Remove Shopping Button */
 
         removeShopping.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -119,33 +121,31 @@ public class AC_ShoppingPage extends AppCompatActivity {
         });
     }
 
+    /* Read from Shopping File */
+
     private void readFile() {
         ArrayList<String> holder = new ArrayList<>();
         holder.clear();
         File fileEvents = new File(AC_ShoppingPage.this.getFilesDir() + "/shopping/list");
 
-        if (!fileEvents.exists()) {
-
-        } else {
+        if (!fileEvents.exists()) {} // if statement: if file path does not exist, do nothing (do not read/display shopping list)
+        else { // else statement: else if file path does exist, fetch file contents and add to shopping list (listView)
             try {
-                BufferedReader br = new BufferedReader(new FileReader(fileEvents));
                 String line;
 
-                while ((line = br.readLine()) != null) {
-                    holder.add(line);
-                }
-                for (int counter = 0; counter < holder.size(); counter++) {
-                    shoppingList.add(holder.get(counter));
-                    //System.out.println(holder.size());
-                    //System.out.println(holder.get(counter));
-                    //System.out.println(holder.get(counter+1));
+                BufferedReader br = new BufferedReader(new FileReader(fileEvents)); // open shopping list file
+
+                while ((line = br.readLine()) != null) { // for each string in the shopping list file, add to shopping list view
+                    shoppingList.add(line);
                 }
 
-                br.close();
+                br.close(); // close shopping list file
             } catch (IOException e) {
             }
         }
     }
+
+    /* Back Button Navigation */
 
     @Override
     public void onBackPressed() {

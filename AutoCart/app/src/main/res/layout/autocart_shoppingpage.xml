@@ -5,20 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/shoppingTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="39dp"
-        android:text="Shopping List"
-        android:textAlignment="center"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/outputList2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageButton
+        android:id="@+id/shoppingShare"
+        android:layout_width="62dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginBottom="21dp"
+        android:backgroundTint="#00EDEDED"
+        app:layout_constraintBottom_toTopOf="@+id/shoppingTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeShareDrawable" />
 
     <ImageButton
         android:id="@+id/shoppingSort"
@@ -33,8 +31,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
 
+    <TextView
+        android:id="@+id/shoppingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="39dp"
+        android:text="Shopping List"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/shoppingOutput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ListView
-        android:id="@+id/outputList2"
+        android:id="@+id/shoppingOutput"
         android:layout_width="385dp"
         android:layout_height="363dp"
         android:layout_marginStart="13dp"
@@ -56,7 +69,7 @@
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputList2" />
+        app:layout_constraintTop_toBottomOf="@+id/shoppingOutput" />
 
     <Button
         android:id="@+id/shoppingRemove"
@@ -68,18 +81,6 @@
         android:text="Remove"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outputList2" />
+        app:layout_constraintTop_toBottomOf="@+id/shoppingOutput" />
 
-    <ImageButton
-        android:id="@+id/shoppingShare"
-        android:layout_width="62dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="76dp"
-        android:layout_marginBottom="21dp"
-        android:backgroundTint="#00EDEDED"
-        app:layout_constraintBottom_toTopOf="@+id/shoppingTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeShareDrawable" />
 </androidx.constraintlayout.widget.ConstraintLayout>
