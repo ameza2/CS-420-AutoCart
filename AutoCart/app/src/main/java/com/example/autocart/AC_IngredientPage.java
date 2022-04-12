@@ -98,18 +98,18 @@ public class AC_IngredientPage extends AppCompatActivity {
                     if(date1.compareTo(date2) > 0) {
                         Log.d("option 1","Expired: Red");
 //                        textView.setTextColor(Color.RED);
-                        view.setBackgroundColor(Color.RED);
+                        view.setBackgroundColor(Color.rgb(255, 89, 89));
                     }
                     else if((date1.compareTo(date2) < 0) || (date1.compareTo(date2) == 0)){
                         if (differenceDates <= 7) {
                             Log.d("option 2", "Almost Expired : Yellow");
 //                            textView.setTextColor(Color.YELLOW);
-                            view.setBackgroundColor(Color.YELLOW);
+                            view.setBackgroundColor(Color.rgb(254, 255, 162));
                         }
                         else {
                             Log.d("option 3", "Healthy : Green");
 //                            textView.setTextColor(Color.GREEN);
-                            view.setBackgroundColor(Color.GREEN);
+                            view.setBackgroundColor(Color.rgb(121, 255, 154));
 
                         }
                     }
