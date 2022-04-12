@@ -24,7 +24,6 @@ public class AC_AddIngredientPage extends AppCompatActivity {
     String date = "";
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,23 +65,50 @@ public class AC_AddIngredientPage extends AppCompatActivity {
 
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (!productEntry.getText().toString().isEmpty() || !date.isEmpty()) {
-                    File file = new File(AC_AddIngredientPage.this.getFilesDir(), "ingredient");
-                    if (!file.exists()) {
-                        file.mkdir();
-                    }
-                    try {
-                        File gpxfile = new File(file, "list");
-                        FileWriter writer = new FileWriter(gpxfile, true);
-                        writer.write(productEntry.getText().toString() + "," + date + "\n");
-                        writer.close();
 
-                        Toast.makeText(AC_AddIngredientPage.this, "Ingredient Entry Saved", Toast.LENGTH_LONG).show();
-                    } catch (Exception e) {
-                    }
+                boolean emptyProduct = productEntry.getText().toString().isEmpty();
+                boolean emptyDate = date.toString().isEmpty();
+
+//                Log.d("Empty Product? ", "" + emptyProduct);
+//                Log.d("Empty Date? ", "" + emptyDate);
+//                Log.d("Product Name: ", "" + productEntry.getText().toString());
+//                Log.d("Expiration Date: ", "" + date.toString());
+//                Log.d("Product Characters: ", "" + productEntry.getText().toString().length());
+//                Log.d("Date Characters: ", "" + date.toString().length());
+
+                if (emptyProduct && emptyDate){
+                    Toast.makeText(getApplicationContext(), "Invalid Form Submission: Missing multiple fields.", Toast.LENGTH_LONG).show(); // deactivation prompt
+                    Log.d("Error [1]: ", "Empty Text Field");
                 }
-                Intent intent = new Intent(AC_AddIngredientPage.this, AC_IngredientPage.class);
-                startActivity(intent);
+                else if (emptyProduct) { // Input Text Validation: Required Fields
+                    Toast.makeText(getApplicationContext(), "Invalid Form Submission: Missing Ingredient Name.", Toast.LENGTH_LONG).show(); // deactivation prompt
+                    Log.d("Error [2]: ", "Empty Text Field");
+                }
+                else if (emptyDate){
+                    Toast.makeText(getApplicationContext(), "Invalid Form Submission: Missing Expiration Date.", Toast.LENGTH_LONG).show(); // deactivation prompt
+                    Log.d("Error [3]: ", "Empty Text Field");
+                }
+                else {
+                    Log.d("Success:", "Valid Text Fields");
+
+                    if (!productEntry.getText().toString().isEmpty() || !date.isEmpty()) {
+                        File file = new File(AC_AddIngredientPage.this.getFilesDir(), "ingredient");
+                        if (!file.exists()) {
+                            file.mkdir();
+                        }
+                        try {
+                            File gpxfile = new File(file, "list");
+                            FileWriter writer = new FileWriter(gpxfile, true);
+                            writer.write(productEntry.getText().toString() + "," + date + "\n");
+                            writer.close();
+
+                            Toast.makeText(AC_AddIngredientPage.this, "Ingredient Entry Saved", Toast.LENGTH_LONG).show();
+                        } catch (Exception e) {
+                        }
+                    }
+                    Intent intent = new Intent(AC_AddIngredientPage.this, AC_IngredientPage.class);
+                    startActivity(intent);
+                }
             }
         });
     }
