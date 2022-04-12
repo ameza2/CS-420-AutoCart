@@ -131,12 +131,12 @@ public class AC_ShoppingPage extends AppCompatActivity {
             }
         });
 
-//        removeShopping.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent(AC_ShoppingPage.this, AC_removeShoppingPage.class);
-//                startActivity(intent);
-//            }
-//        });
+        removeShopping.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AC_ShoppingPage.this, AC_RemoveShoppingPage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void readFile() {
