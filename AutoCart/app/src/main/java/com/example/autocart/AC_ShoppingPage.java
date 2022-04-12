@@ -11,26 +11,24 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.view.MenuItem;
-
 import java.io.FileWriter;
-import java.util.Collections;
-import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.ArrayList;
 import android.util.Log;
 
 public class AC_ShoppingPage extends AppCompatActivity {
 
     ArrayList<String> shoppingList;
+    ArrayAdapter<String> adapter;
+    ListView output;
 
     Button addShopping;
     Button removeShopping;
     ImageButton sortShopping;
-    ListView output;
-
-    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,50 +65,32 @@ public class AC_ShoppingPage extends AppCompatActivity {
                         // Toast message on menu item clicked
 //                        Toast.makeText(AC_ShoppingPage.this, "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
 
-//                        if (menuItem.getTitle().equals("Alphabetically")) {
-//                            //Parse shoppingList to save
-//                            ArrayList<String> temp3 = new ArrayList<>();
-//                            for (int j = 0; j < shoppingList.size(); j++) {
-//                                String[] parser = shoppingList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
-//                                for (String t : parser) {
-//                                    temp3.add(t);
-//                                }
-//                            }
-//
-//                            //Rewrite shoppingList for items first
-//                            shoppingList.clear();
-//                            for (int i = 0; i < temp3.size(); i += 2) {
-//                                shoppingList.add(temp3.get(i + 1) + "\t\t\t\t\t\t\t\t\t\t\t\t\t" + temp3.get(i));
-//                            }
-//
-//                            //Sort shoppingList
-//                            Collections.sort(shoppingList);
-//
-//                            //Parse shoppingList to save
-//                            ArrayList<String> temp4 = new ArrayList<>();
-//                            for (int j = 0; j < shoppingList.size(); j++) {
-//                                String[] parser = shoppingList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
-//                                for (String t : parser) {
-//                                    temp4.add(t);
-//                                }
-//                            }
-//
-//                            //Save file
-//                            File file = new File(AC_ShoppingPage.this.getFilesDir(), "shopping");
-//                            if (!file.exists()) {
-//                                file.mkdir();
-//                            }
-//                            try {
-//                                File gpxfile = new File(file, "list");
-//                                FileWriter writer = new FileWriter(gpxfile, false);
-//                                for (int k = 0; k < temp4.size(); k += 2) {
-//                                    writer.write(temp4.get(k) + "," + temp4.get(k + 1) + "\n");
-//                                }
-//                                writer.close();
-//
-//                            } catch (Exception e) {
-//                            }
-//                        }
+                        if (menuItem.getTitle().equals("Alphabetically")) {
+                            //Sort shoppingList
+                            Collections.sort(shoppingList);
+
+                            //Parse shoppingList to save
+                            ArrayList<String> temp4 = new ArrayList<>();
+                            for (int j = 0; j < shoppingList.size(); j++) {
+                                temp4.add(shoppingList.get(j));
+                            }
+
+                            //Save file
+                            File file = new File(AC_ShoppingPage.this.getFilesDir(), "shopping");
+                            if (!file.exists()) {
+                                file.mkdir();
+                            }
+                            try {
+                                File gpxfile = new File(file, "list");
+                                FileWriter writer = new FileWriter(gpxfile, false);
+                                for (int k = 0; k < temp4.size(); k++) {
+                                    writer.write(temp4.get(k) + "\n");
+                                }
+                                writer.close();
+
+                            } catch (Exception e) {
+                            }
+                        }
 
                         //Refresh Page
                         Intent intent = new Intent(AC_ShoppingPage.this, AC_ShoppingPage.class);
