@@ -35,6 +35,12 @@
             android:name=".AC_RemoveIngredientPage"
             android:exported="false" />
         <activity
+            android:name=".AC_AddShoppingPage"
+            android:exported="false" />
+        <activity
+            android:name=".AC_RemoveShoppingPage"
+            android:exported="false" />
+        <activity
             android:name=".AC_ConfigPage"
             android:exported="false" />
         <activity

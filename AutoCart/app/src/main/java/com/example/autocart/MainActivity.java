@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.autocart_homepage);
 
         IngredientButton = (Button)findViewById(R.id.ingredientList);
-        ShoppingButton = (Button)findViewById(R.id.shoppingList);
+        ShoppingButton = (Button)findViewById(R.id.outputList2);
         SettingsButton = (ImageButton)findViewById(R.id.settingsIcon);
 
         IngredientButton.setOnClickListener(new View.OnClickListener() {
