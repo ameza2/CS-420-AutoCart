@@ -6,6 +6,4 @@
         android:title="Ascending Date" />
     <item android:id="@+id/descending_order"
         android:title="Descending Date" />
-    <item android:id="@+id/recently_added"
-        android:title="Recently Added" />
 </menu>
