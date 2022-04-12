@@ -16,9 +16,13 @@ import android.widget.PopupMenu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.FileWriter;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -91,23 +95,20 @@ public class AC_IngredientPage extends AppCompatActivity {
                 long difference = Math.abs(date1.getTime() - date2.getTime());
                 long differenceDates = difference / (24 * 60 * 60 * 1000);
 
-                Log.d("position vs i","" + position);
-
                 for(int j = 0; j < position + 1; j++){
-                    System.out.println("ITERATION");
                     if(date1.compareTo(date2) > 0) {
-                        Log.d("option 1","Expired: Red");
+//                        Log.d("option 1","Expired: Red");
 //                        textView.setTextColor(Color.RED);
                         view.setBackgroundColor(Color.rgb(255, 89, 89));
                     }
                     else if((date1.compareTo(date2) < 0) || (date1.compareTo(date2) == 0)){
                         if (differenceDates <= 7) {
-                            Log.d("option 2", "Almost Expired : Yellow");
+//                            Log.d("option 2", "Almost Expired : Yellow");
 //                            textView.setTextColor(Color.YELLOW);
                             view.setBackgroundColor(Color.rgb(254, 255, 162));
                         }
                         else {
-                            Log.d("option 3", "Healthy : Green");
+//                            Log.d("option 3", "Healthy : Green");
 //                            textView.setTextColor(Color.GREEN);
                             view.setBackgroundColor(Color.rgb(121, 255, 154));
 
@@ -140,7 +141,142 @@ public class AC_IngredientPage extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         // Toast message on menu item clicked
-                        Toast.makeText(AC_IngredientPage.this, "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(AC_IngredientPage.this, "You Clicked " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+
+                        if(menuItem.getTitle().equals("Alphabetically"))
+                        {
+                            //Parse ingredientList to save
+                            ArrayList<String> temp3 = new ArrayList<>();
+                            for(int j = 0; j < ingredientList.size(); j++){
+                                String[] parser = ingredientList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                for (String t : parser) {
+                                    temp3.add(t);
+                                }
+                            }
+
+                            //Rewrite ingredientList for items first
+                            ingredientList.clear();
+                            for(int i = 0; i < temp3.size(); i += 2){
+                                ingredientList.add(temp3.get(i + 1) + "\t\t\t\t\t\t\t\t\t\t\t\t\t" + temp3.get(i));
+                            }
+
+                            //Sort ingredientList
+                            Collections.sort(ingredientList);
+
+                            //Parse ingredientList to save
+                            ArrayList<String> temp4 = new ArrayList<>();
+                            for(int j = 0; j < ingredientList.size(); j++){
+                                String[] parser = ingredientList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                for (String t : parser) {
+                                    temp4.add(t);
+                                }
+                            }
+
+                            //Save file
+                            File file = new File(AC_IngredientPage.this.getFilesDir(), "ingredient");
+                            if (!file.exists()) {
+                                file.mkdir();
+                            }
+                            try {
+                                File gpxfile = new File(file, "list");
+                                FileWriter writer = new FileWriter(gpxfile, false);
+                                for(int k = 0; k < temp4.size(); k+=2){
+                                    writer.write(temp4.get(k) + "," + temp4.get(k + 1) + "\n");
+                                }
+                                writer.close();
+
+                            } catch (Exception e) {
+                            }
+
+
+                        }
+                        else if(menuItem.getTitle().equals("Ascending Date"))
+                        {
+                            //Sort ingredientList
+                            Collections.sort(ingredientList, new Comparator<String>() {
+                                DateFormat f = new SimpleDateFormat("M/d/yyyy");
+                                @Override
+                                public int compare(String o1, String o2) {
+                                    try {
+                                        return f.parse(o1).compareTo(f.parse(o2));
+                                    } catch (ParseException e) {
+                                        throw new IllegalArgumentException(e);
+                                    }
+                                }
+                            });
+
+                            //Parse ingredientList to save
+                            ArrayList<String> temp3 = new ArrayList<>();
+                            for(int j = 0; j < ingredientList.size(); j++){
+                                String[] parser = ingredientList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                for (String t : parser) {
+                                    temp3.add(t);
+                                }
+                            }
+
+                            //Save file
+                            File file = new File(AC_IngredientPage.this.getFilesDir(), "ingredient");
+                            if (!file.exists()) {
+                                file.mkdir();
+                            }
+                            try {
+                                File gpxfile = new File(file, "list");
+                                FileWriter writer = new FileWriter(gpxfile, false);
+                                for(int k = 0; k < temp3.size(); k+=2){
+                                    writer.write(temp3.get(k + 1) + "," + temp3.get(k) + "\n");
+                                }
+                                writer.close();
+
+                            } catch (Exception e) {
+                            }
+
+                        }
+                        else if(menuItem.getTitle().equals("Descending Date"))
+                        {
+                            //Sort ingredientList
+                            Collections.sort(ingredientList, new Comparator<String>() {
+                                DateFormat f = new SimpleDateFormat("M/d/yyyy");
+                                @Override
+                                public int compare(String o1, String o2) {
+                                    try {
+                                        return f.parse(o1).compareTo(f.parse(o2));
+                                    } catch (ParseException e) {
+                                        throw new IllegalArgumentException(e);
+                                    }
+                                }
+                            });
+                            Collections.reverse(ingredientList);
+
+                            //Parse ingredientList to save
+                            ArrayList<String> temp3 = new ArrayList<>();
+                            for(int j = 0; j < ingredientList.size(); j++){
+                                String[] parser = ingredientList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
+                                for (String t : parser) {
+                                    temp3.add(t);
+                                }
+                            }
+
+                            //Save file
+                            File file = new File(AC_IngredientPage.this.getFilesDir(), "ingredient");
+                            if (!file.exists()) {
+                                file.mkdir();
+                            }
+                            try {
+                                File gpxfile = new File(file, "list");
+                                FileWriter writer = new FileWriter(gpxfile, false);
+                                for(int k = 0; k < temp3.size(); k+=2){
+                                    writer.write(temp3.get(k + 1) + "," + temp3.get(k) + "\n");
+                                }
+                                writer.close();
+
+                            } catch (Exception e) {
+                            }
+                        }
+
+                        //Refresh Page
+                        Intent intent = new Intent(AC_IngredientPage.this, AC_IngredientPage.class);
+                        startActivity(intent);
+
                         return true;
                     }
                 });
@@ -148,59 +284,6 @@ public class AC_IngredientPage extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
-//        ///////////////////////
-//
-//        ///// Color Logic /////
-//
-//        ///////////////////////
-//
-//        //Parse ingredientList
-//        ArrayList<String> temp = new ArrayList<>();
-//        for(int j = 0; j < ingredientList.size(); j++){
-//            String[] parser = ingredientList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
-//            for (String t : parser) {
-//                temp.add(t);
-//            }
-//        }
-//
-//        for(int i = 0; i < temp.size(); i+=2){
-//            Date date1;
-//            Date date2;
-//            String curr = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yyyy");
-//
-//            try {
-//                date1 = simpleDateFormat.parse(curr);
-//                date2 = simpleDateFormat.parse(temp.get(i));
-//
-//                //Comparing dates
-//                long difference = Math.abs(date1.getTime() - date2.getTime());
-//                long differenceDates = difference / (24 * 60 * 60 * 1000);
-//
-//                if(date1.compareTo(date2) > 0) {
-//                    Log.d("option 1","Expired: Red");
-//                }
-//                else if((date1.compareTo(date2) < 0) || (date1.compareTo(date2) == 0)){
-//                    if (differenceDates <= 7) {
-//                        Log.d("option 2", "Almost Expired : Yellow");
-//                    }
-//                    else {
-//                        Log.d("option 3", "Healthy : Green");
-//                    }
-//
-////                    int indexOf = temp.indexOf(temp.get(i));
-////                    output.getChildAt(0).setBackgroundColor(Color.RED);
-////                    Log.d("child", ""+output.getChildAt(0));
-//
-//                }
-//
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-        ///////////////////////
 
         addIngredient.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
