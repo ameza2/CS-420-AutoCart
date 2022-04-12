@@ -42,6 +42,7 @@ public class AC_RemoveIngredientPage extends AppCompatActivity {
         currDate.setText(date_n);
 
         ingredientList = new ArrayList<>();
+
         removeIngredient = (Button)findViewById(R.id.ingredientRemove);
         output = (ListView)findViewById(R.id.outputList);
 
@@ -60,8 +61,8 @@ public class AC_RemoveIngredientPage extends AppCompatActivity {
                         ingredientList.set(i, "\t\t\t\t\t\t\t\t\t\t\t\t\t");
                         adapter.notifyDataSetChanged();
 
-                        Log.d("ingredientlist size a", ""+ ingredientList.size());
-                        Log.d("toremove", toremove);
+//                        Log.d("ingredientlist size a", ""+ ingredientList.size());
+//                        Log.d("toremove", toremove);
 
                         //Parse ingredientList
                         ArrayList<String> temp = new ArrayList<>();
@@ -89,6 +90,8 @@ public class AC_RemoveIngredientPage extends AppCompatActivity {
                         }
                     }
                 }
+
+                Toast.makeText(AC_RemoveIngredientPage.this, "Ingredient Entry Removed", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(AC_RemoveIngredientPage.this, AC_IngredientPage.class);
                 startActivity(intent);

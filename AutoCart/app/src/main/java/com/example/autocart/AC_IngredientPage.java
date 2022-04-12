@@ -27,9 +27,11 @@ import android.util.Log;
 public class AC_IngredientPage extends AppCompatActivity {
 
     ArrayList<String> ingredientList;
+
     Button addIngredient;
     Button removeIngredient;
     ListView output;
+
     ArrayAdapter<String> adapter;
 
     @Override
@@ -42,6 +44,7 @@ public class AC_IngredientPage extends AppCompatActivity {
         currDate.setText(date_n);
 
         ingredientList = new ArrayList<>();
+
         addIngredient = (Button)findViewById(R.id.ingredientAdd);
         removeIngredient = (Button)findViewById(R.id.ingredientRemove);
         output = (ListView)findViewById(R.id.outputList);
@@ -50,21 +53,7 @@ public class AC_IngredientPage extends AppCompatActivity {
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredientList);
         output.setAdapter(adapter);
 
-        addIngredient.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(AC_IngredientPage.this, AC_AddIngredientPage.class);
-                startActivity(intent);
-            }
-        });
-
-        removeIngredient.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(AC_IngredientPage.this, AC_RemoveIngredientPage.class);
-                startActivity(intent);
-            }
-        });
-
-        //Color Logic-------------
+        ///// Color Logic /////
 
         //Parse ingredientList
         ArrayList<String> temp = new ArrayList<>();
@@ -88,15 +77,23 @@ public class AC_IngredientPage extends AppCompatActivity {
                 //Comparing dates
                 long difference = Math.abs(date1.getTime() - date2.getTime());
                 long differenceDates = difference / (24 * 60 * 60 * 1000);
+                //String dayDifference = Long.toString(differenceDates);
+
 
                 if(date1.compareTo(date2) > 0) {
-                    Log.d("option 1","Expired");
+                    Log.d("option 1","Expired: Red");
                 }
                 else if((date1.compareTo(date2) < 0) || (date1.compareTo(date2) == 0)){
-                    Log.d("option 2","Not expired");
+                    if (differenceDates <= 7) {
+                        Log.d("option 2", "Almost Expired : Yellow");
+                    }
+                    else {
+                        Log.d("option 3", "Healthy : Green");
+                    }
+
 //                    int indexOf = temp.indexOf(temp.get(i));
 //                    output.getChildAt(0).setBackgroundColor(Color.RED);
-                    Log.d("child", ""+output.getChildAt(0));
+//                    Log.d("child", ""+output.getChildAt(0));
 
                 }
 
@@ -105,6 +102,21 @@ public class AC_IngredientPage extends AppCompatActivity {
             }
         }
 
+        ///////////////////////
+
+        addIngredient.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AC_IngredientPage.this, AC_AddIngredientPage.class);
+                startActivity(intent);
+            }
+        });
+
+        removeIngredient.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AC_IngredientPage.this, AC_RemoveIngredientPage.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void readFile() {
