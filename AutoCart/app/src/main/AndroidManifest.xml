@@ -32,6 +32,9 @@
             android:name=".AC_AddIngredientPage"
             android:exported="false" />
         <activity
+            android:name=".AC_RemoveIngredientPage"
+            android:exported="false" />
+        <activity
             android:name=".AC_ConfigPage"
             android:exported="false" />
         <activity

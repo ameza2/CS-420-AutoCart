@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Button;
@@ -20,10 +21,11 @@ import android.util.Log;
 
 public class AC_IngredientPage extends AppCompatActivity {
 
-    ArrayList<DataIngredient> ingredientList;
+    ArrayList<String> ingredientList;
     Button addIngredient;
+    Button removeIngredient;
     ListView output;
-    IngredientListAdapter adapter;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +38,23 @@ public class AC_IngredientPage extends AppCompatActivity {
 
         ingredientList = new ArrayList<>();
         addIngredient = (Button)findViewById(R.id.ingredientAdd);
+        removeIngredient = (Button)findViewById(R.id.ingredientRemove);
         output = (ListView)findViewById(R.id.outputList);
 
         readFile();
-        adapter = new IngredientListAdapter(this, R.layout.adapter_view_layout, ingredientList);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, ingredientList);
         output.setAdapter(adapter);
 
         addIngredient.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(AC_IngredientPage.this, AC_AddIngredientPage.class);
+                startActivity(intent);
+            }
+        });
+
+        removeIngredient.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(AC_IngredientPage.this, AC_RemoveIngredientPage.class);
                 startActivity(intent);
             }
         });
@@ -70,7 +80,7 @@ public class AC_IngredientPage extends AppCompatActivity {
                     }
                 }
                 for(int counter = 0; counter < holder.size(); counter += 2) {
-                    ingredientList.add(new DataIngredient(holder.get(counter), holder.get(counter + 1)));
+                    ingredientList.add(holder.get(counter + 1) + "\t\t\t\t\t\t\t\t\t\t\t\t\t" + holder.get(counter));
                     //System.out.println(holder.size());
                     //System.out.println(holder.get(counter));
                     //System.out.println(holder.get(counter+1));

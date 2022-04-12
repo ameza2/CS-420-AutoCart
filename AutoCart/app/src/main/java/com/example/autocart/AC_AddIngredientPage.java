@@ -23,7 +23,7 @@ public class AC_AddIngredientPage extends AppCompatActivity {
     Button dateButton;
     String date = "";
     private DatePickerDialog.OnDateSetListener dateSetListener;
-    DataIngredient thisIngredients;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,6 @@ public class AC_AddIngredientPage extends AppCompatActivity {
         final EditText productEntry = findViewById(R.id.productName);
         addButton = (Button)findViewById(R.id.addIngredient);
         dateButton = (Button)findViewById(R.id.dateButton);
-        //thisIngredients = (DataIngredient) getIngredient();
 
         //Date button Selection
         dateButton.setOnClickListener(new View.OnClickListener() {
