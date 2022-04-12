@@ -5,20 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/addShopping"
+    <TextView
+        android:id="@+id/addShoppingTitle"
+        style="@style/Widget.AppCompat.TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="146dp"
-        android:layout_marginEnd="162dp"
-        android:text="Add"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="73dp"
+        android:text="Add Product"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/productTitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productName2" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/productTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginBottom="482dp"
+        android:text="Product Name *"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/productName2"
+        android:id="@+id/shoppingProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
@@ -32,34 +49,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTitle2" />
+        app:layout_constraintTop_toBottomOf="@+id/productTitle" />
 
-    <TextView
-        android:id="@+id/nameTitle2"
+    <Button
+        android:id="@+id/addShopping"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="482dp"
-        android:text="Product Name *"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/addShoppingTitle"
-        style="@style/Widget.AppCompat.TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="114dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="73dp"
-        android:text="Add Product"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/nameTitle2"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="146dp"
+        android:layout_marginEnd="162dp"
+        android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/shoppingProduct" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

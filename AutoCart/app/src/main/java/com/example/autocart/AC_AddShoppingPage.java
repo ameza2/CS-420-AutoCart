@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import java.io.File;
 import java.io.FileWriter;
-import android.util.Log;
 
 public class AC_AddShoppingPage extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class AC_AddShoppingPage extends AppCompatActivity {
 
         /* Fetch Page Activity */
 
-        final EditText productEntry = findViewById(R.id.productName2);
+        final EditText productEntry = findViewById(R.id.shoppingProduct);
         addButton = (Button)findViewById(R.id.addShopping);
 
         /* Add Shopping Button */
