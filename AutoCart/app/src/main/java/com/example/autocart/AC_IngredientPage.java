@@ -3,14 +3,19 @@ package com.example.autocart;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Button;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.ArrayList;
 import java.io.BufferedReader;
@@ -58,6 +63,48 @@ public class AC_IngredientPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //Color Logic-------------
+
+        //Parse ingredientList
+        ArrayList<String> temp = new ArrayList<>();
+        for(int j = 0; j < ingredientList.size(); j++){
+            String[] parser = ingredientList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
+            for (String t : parser) {
+                temp.add(t);
+            }
+        }
+
+        for(int i = 0; i < temp.size(); i+=2){
+            Date date1;
+            Date date2;
+            String curr = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yyyy");
+
+            try {
+                date1 = simpleDateFormat.parse(curr);
+                date2 = simpleDateFormat.parse(temp.get(i));
+
+                //Comparing dates
+                long difference = Math.abs(date1.getTime() - date2.getTime());
+                long differenceDates = difference / (24 * 60 * 60 * 1000);
+
+                if(date1.compareTo(date2) > 0) {
+                    Log.d("option 1","Expired");
+                }
+                else if((date1.compareTo(date2) < 0) || (date1.compareTo(date2) == 0)){
+                    Log.d("option 2","Not expired");
+//                    int indexOf = temp.indexOf(temp.get(i));
+//                    output.getChildAt(0).setBackgroundColor(Color.RED);
+                    Log.d("child", ""+output.getChildAt(0));
+
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private void readFile() {
@@ -97,4 +144,5 @@ public class AC_IngredientPage extends AppCompatActivity {
         Intent intent = new Intent(AC_IngredientPage.this, MainActivity.class);
         startActivity(intent);
     }
+
 }
