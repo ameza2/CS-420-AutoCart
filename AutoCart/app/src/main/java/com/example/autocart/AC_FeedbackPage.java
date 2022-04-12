@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.util.Log;
 
 public class AC_FeedbackPage extends AppCompatActivity {
 
@@ -26,8 +27,8 @@ public class AC_FeedbackPage extends AppCompatActivity {
 
         tvFeedback = findViewById(R.id.tvFeedback);
         ratingStars = findViewById(R.id.ratingBar);
-        feedbackButton = findViewById(R.id.feedbackButton);
-        feedbackContent = findViewById(R.id.textName);
+        feedbackButton = findViewById(R.id.feedbackSubmit);
+        feedbackContent = findViewById(R.id.textMessage);
 
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() { // star bar options (used to record user satisfaction)
             @Override
@@ -58,7 +59,7 @@ public class AC_FeedbackPage extends AppCompatActivity {
             }
         });
 
-        /* Submit Feedback Button: submit feedback entry for product maintenance (TO DO: must be stored/sent somewhere) */
+        /* Submit Feedback Button: submit feedback entry for product maintenance */
         //Referencing solution from https://stackoverflow.com/questions/8994488/android-button-onclick-submit-to-email
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
