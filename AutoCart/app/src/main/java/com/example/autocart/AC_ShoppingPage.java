@@ -187,6 +187,7 @@ public class AC_ShoppingPage extends AppCompatActivity {
         });
 
         /* Share button Selection */
+
         shareShopping.setOnClickListener(new View.OnClickListener() {
             private ClipboardManager myClipboard;
             private ClipData myClip;
@@ -209,6 +210,7 @@ public class AC_ShoppingPage extends AppCompatActivity {
     }
 
     /* Read from Shopping File */
+
     private void readFile() {
         ArrayList<String> holder = new ArrayList<>();
         holder.clear();
