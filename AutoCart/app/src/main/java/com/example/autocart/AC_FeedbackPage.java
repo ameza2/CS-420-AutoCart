@@ -13,6 +13,7 @@ import android.util.Log;
 public class AC_FeedbackPage extends AppCompatActivity {
 
     /* Variable Initialization (feedback options) */
+
     TextView tvFeedback;
     RatingBar ratingStars;
     Button feedbackButton;
@@ -25,10 +26,14 @@ public class AC_FeedbackPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.autocart_feedbackpage);
 
+        /* Page Activity */
+
         tvFeedback = findViewById(R.id.tvFeedback);
         ratingStars = findViewById(R.id.ratingBar);
         feedbackButton = findViewById(R.id.feedbackSubmit);
         feedbackContent = findViewById(R.id.textMessage);
+
+        /* Rating Scale */
 
         ratingStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() { // star bar options (used to record user satisfaction)
             @Override
@@ -60,6 +65,7 @@ public class AC_FeedbackPage extends AppCompatActivity {
         });
 
         /* Submit Feedback Button: submit feedback entry for product maintenance */
+
         //Referencing solution from https://stackoverflow.com/questions/8994488/android-button-onclick-submit-to-email
         feedbackButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -68,13 +74,21 @@ public class AC_FeedbackPage extends AppCompatActivity {
                 email.putExtra(Intent.EXTRA_SUBJECT, "AutoCart Feedback: " + stars + "/5 star rating");
                 email.putExtra(Intent.EXTRA_TEXT, feedbackContent.getText().toString());
 
-                //need this to prompts email client only
+                // need this to prompts email client only
                 email.setType("message/rfc822");
 
-                //Should launch the user's email app allowing the user to choose which app to send the email.
+                // Should launch the user's email app allowing the user to choose which app to send the email.
                 startActivity(Intent.createChooser(email, "Choose an Email client :"));
             }
         });
+    }
+
+    /* Back Button Navigation */
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AC_FeedbackPage.this, AC_SettingsPage.class);
+        startActivity(intent);
     }
 }
 

@@ -37,6 +37,8 @@ public class AC_SupportPage extends AppCompatActivity {
     private static final String regex = "^[a-zA-Z0-9_+-]+(?:\\.[a-zA-Z0-9_+-]+)*@" // local part regular expression
             + "(?:[^-.]+[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"; // domain part regular expression
 
+    /* Variable Initialization */
+
     Button supportButton; // button variable: supportButton (submit support request and redirect user to home screen)
     EditText supportName; // textbox variable: supportName (store user name)
     EditText supportEmail; // textbox variable: supportEmail (store user email)
@@ -47,7 +49,7 @@ public class AC_SupportPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.autocart_supportpage);
 
-        // Fetch Button and Textbox States //
+       /* Page Activity */
 
         supportName = findViewById(R.id.textName);
         supportEmail = findViewById(R.id.textEmail);
@@ -55,6 +57,7 @@ public class AC_SupportPage extends AppCompatActivity {
         supportButton = findViewById(R.id.submitButton);
 
         /* Support Button: used to submit support request and redirect user to home screen */
+
         // Referencing solution from https://stackoverflow.com/questions/8994488/android-button-onclick-submit-to-email //
         supportButton.setOnClickListener(new View.OnClickListener() { // form submission activity
             public void onClick(View v) {
@@ -107,5 +110,13 @@ public class AC_SupportPage extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /* Back Button Navigation */
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(AC_SupportPage.this, AC_SettingsPage.class);
+        startActivity(intent);
     }
 }

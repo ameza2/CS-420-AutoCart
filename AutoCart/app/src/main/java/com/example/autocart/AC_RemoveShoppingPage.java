@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import android.util.Log;
 
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -19,7 +20,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import android.util.Log;
 
 
 public class AC_RemoveShoppingPage extends AppCompatActivity {
@@ -80,7 +80,7 @@ public class AC_RemoveShoppingPage extends AppCompatActivity {
                         for(int k = 0; k < temp.size(); k++) { // for loop: for each element in updated shopping list, export to file
                             writer.write(temp.get(k) + "\n"); // export shopping list entry
                         }
-                        
+
                         writer.close(); // close shopping list file
 
                     } catch (Exception e) {
