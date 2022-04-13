@@ -62,14 +62,14 @@ public class AC_RemoveShoppingPage extends AppCompatActivity {
 
                     // Parse Shopping List //
                     ArrayList<String> temp = new ArrayList<>();
-                    for(int j = 0; j < shoppingList.size(); j++){ // for loop: for each element in shopping list, check for parsable string and remove from list
+                    for(int j = 0; j < shoppingList.size(); j++) { // for loop: for each element in shopping list, check for parsable string and remove from list
                         String[] parser = shoppingList.get(j).split("\t\t\t\t\t\t\t\t\t\t\t\t\t");
                         for (String t : parser) { // for loop: for each string that is not parsable, add to temp shopping list
                             temp.add(t);
                         }
                     }
 
-                    // Export New Entry to File //
+                    // Export Updated List to File //
                     File file = new File(AC_RemoveShoppingPage.this.getFilesDir(), "shopping"); // open shopping list directory
                     if (!file.exists()) { // if statement: if shopping list directory does not exist, create
                         file.mkdir(); // create shopping list directory
@@ -96,6 +96,8 @@ public class AC_RemoveShoppingPage extends AppCompatActivity {
             }
         });
 
+        /* Selection Tool */
+
         output.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -110,6 +112,8 @@ public class AC_RemoveShoppingPage extends AppCompatActivity {
             }
         });
     }
+
+    /* Read from Shopping File */
 
     private void readFile() {
         ArrayList<String> holder = new ArrayList<>();
