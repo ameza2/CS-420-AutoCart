@@ -5,20 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.view.MenuItem;
 import android.widget.Toast;
+
+import android.util.Log;
 
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -27,9 +26,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.Collections;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
@@ -68,7 +67,8 @@ public class AC_ShoppingPage extends AppCompatActivity {
         readFile();
         readFileIngredient();
 
-        /* Parse Ingredient file and look for expired items*/
+        /* Parse Ingredient File and Look for Expired Items */
+
         ArrayList<String> temp = new ArrayList<>();
         for(int j = 0; j < ingredientList.size(); j++){
             String[] parser = ingredientList.get(j).split(",");
@@ -77,6 +77,7 @@ public class AC_ShoppingPage extends AppCompatActivity {
             }
         }
 
+        // Date Comparison //
         Date date1;
         Date date2;
         String curr = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
@@ -87,7 +88,7 @@ public class AC_ShoppingPage extends AppCompatActivity {
                 date1 = simpleDateFormat.parse(curr);
                 date2 = simpleDateFormat.parse(temp.get(i + 1));
 
-                if(date1.compareTo(date2) > 0) {
+                if(date1.compareTo(date2) > 0) { // if statement: if item expired, add product name to shopping list
                     if(!shoppingList.contains(temp.get(i))){
                         shoppingList.add(temp.get(i));
                     }
@@ -98,21 +99,24 @@ public class AC_ShoppingPage extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //Save file
-        File file = new File(AC_ShoppingPage.this.getFilesDir(), "shopping");
-        if (!file.exists()) {
-            file.mkdir();
+        /* Automatically Append Expired Items to Shopping List */
+
+        File file = new File(AC_ShoppingPage.this.getFilesDir(), "shopping"); // open shopping list directory
+        if (!file.exists()) { // if statement: if shopping list directory does not exist, create
+            file.mkdir(); // create shopping list directory
         }
         try {
-            File gpxfile = new File(file, "list");
-            FileWriter writer = new FileWriter(gpxfile, false);
-            for(int k = 0; k < shoppingList.size(); k++){
+            File gpxfile = new File(file, "list"); // create shopping list file
+            FileWriter writer = new FileWriter(gpxfile, false); // open shopping list file w/o append (overwrite)
+            for(int k = 0; k < shoppingList.size(); k++) { // for each element in shopping list, export to file
                 writer.write(shoppingList.get(k) + "\n");
             }
-            writer.close();
 
+            writer.close(); // close shopping list file
         } catch (Exception e) {
         }
+
+        /* Show Shopping List Contents */
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shoppingList);
         output.setAdapter(adapter);
@@ -186,7 +190,7 @@ public class AC_ShoppingPage extends AppCompatActivity {
             }
         });
 
-        /* Share button Selection */
+        /* Share Shopping Button */
 
         shareShopping.setOnClickListener(new View.OnClickListener() {
             private ClipboardManager myClipboard;
@@ -194,16 +198,17 @@ public class AC_ShoppingPage extends AppCompatActivity {
 
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
+                // Create Shopping List String //
                 myClipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 String Title = "Shopping List:\n-";
                 String text = String.join("\n-", shoppingList);
-                
+
+                // Copy Shopping List String to Clipboard //
                 myClip = ClipData.newPlainText("text", Title + text);
                 myClipboard.setPrimaryClip(myClip);
 
-                Toast.makeText(getApplicationContext(), "Text Copied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Shopping List Copied to Clipboard", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -12,10 +12,12 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
+
+import android.util.Log;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Calendar;
-import android.util.Log;
 
 public class AC_AddIngredientPage extends AppCompatActivity {
 
