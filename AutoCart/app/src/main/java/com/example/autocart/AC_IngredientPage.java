@@ -161,7 +161,7 @@ public class AC_IngredientPage extends AppCompatActivity {
                             }
 
                             //Sort ingredientList
-                            Collections.sort(ingredientList);
+                            Collections.sort(ingredientList, String.CASE_INSENSITIVE_ORDER);
 
                             //Parse ingredientList to save
                             ArrayList<String> temp4 = new ArrayList<>();
