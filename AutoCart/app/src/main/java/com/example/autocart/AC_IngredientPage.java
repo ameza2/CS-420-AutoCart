@@ -15,8 +15,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
-import android.util.Log;
-
 import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -141,7 +139,7 @@ public class AC_IngredientPage extends AppCompatActivity {
                 PopupMenu popupMenu = new PopupMenu(AC_IngredientPage.this, sortIngredient);
 
                 // Inflating popup menu from popup_menu.xml file
-                popupMenu.getMenuInflater().inflate(R.menu.autocart_menu, popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.autocart_ingredientmenu, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
                     @Override

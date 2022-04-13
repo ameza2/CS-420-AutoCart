@@ -17,8 +17,6 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import android.util.Log;
-
 import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.File;
@@ -131,7 +129,7 @@ public class AC_ShoppingPage extends AppCompatActivity {
                 PopupMenu popupMenu = new PopupMenu(AC_ShoppingPage.this, sortShopping);
 
                 // Inflating popup menu from popup_menu.xml file
-                popupMenu.getMenuInflater().inflate(R.menu.autocart_menu, popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.autocart_shoppingmenu, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 
                     @Override
