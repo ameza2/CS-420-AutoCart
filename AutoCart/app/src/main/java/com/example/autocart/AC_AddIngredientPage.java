@@ -67,6 +67,16 @@ public class AC_AddIngredientPage extends AppCompatActivity {
                 //Log.d("valid","onDateSet: mm/dd/yyy: " + month + " / " + day + " / " + year);
 
                 date = month + "/" + day + "/" + year;
+
+                //Fix Spacings
+                if(month < 10){
+                    date += "  ";
+                }
+
+                if(day < 10){
+                    date += "  ";
+                }
+
                 dateButton.setText(date);
             }
         };

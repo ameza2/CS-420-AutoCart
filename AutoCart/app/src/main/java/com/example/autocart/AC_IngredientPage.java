@@ -87,8 +87,8 @@ public class AC_IngredientPage extends AppCompatActivity {
             // Date Comparison + Color Assignments //
             Date date1;
             Date date2;
-            String curr = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yyyy");
+            String curr = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
             try {
                 date1 = simpleDateFormat.parse(curr);
@@ -192,7 +192,7 @@ public class AC_IngredientPage extends AppCompatActivity {
                         else if(menuItem.getTitle().equals("Ascending Date")) { // Ascending Sort
                             // Sort Ingredient List //
                             Collections.sort(ingredientList, new Comparator<String>() {
-                                DateFormat f = new SimpleDateFormat("M/d/yyyy");
+                                DateFormat f = new SimpleDateFormat("MM/dd/yyyy");
                                 @Override
                                 public int compare(String o1, String o2) {
                                     try {
@@ -232,7 +232,7 @@ public class AC_IngredientPage extends AppCompatActivity {
                         else if(menuItem.getTitle().equals("Descending Date")) { // Descending Sort
                             // Sort Ingredient List //
                             Collections.sort(ingredientList, new Comparator<String>() {
-                                DateFormat f = new SimpleDateFormat("M/d/yyyy");
+                                DateFormat f = new SimpleDateFormat("MM/dd/yyyy");
                                 @Override
                                 public int compare(String o1, String o2) {
                                     try {

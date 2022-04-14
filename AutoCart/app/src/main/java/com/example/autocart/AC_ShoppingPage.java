@@ -78,8 +78,8 @@ public class AC_ShoppingPage extends AppCompatActivity {
         // Date Comparison //
         Date date1;
         Date date2;
-        String curr = new SimpleDateFormat("M/d/yyyy", Locale.getDefault()).format(new Date());
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M/d/yyyy");
+        String curr = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
         try {
             for(int i = 0; i < temp.size(); i+=2){
