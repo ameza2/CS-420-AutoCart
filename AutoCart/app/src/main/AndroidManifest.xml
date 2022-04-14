@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.autocart">
 
+    <uses-permission android:name = "android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/autocartlogo_foreground"
@@ -18,7 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".AC_IngredientPage"
             android:exported="false" />
@@ -49,6 +50,19 @@
         <activity
             android:name=".AC_SupportPage"
             android:exported="false" />
+        <activity
+            android:name=".AC_BackgroundNotifcation"
+            android:exported="true" />
+        <service
+            android:name = ".AC_NotificationService"
+            android:label = "@string/app_name"
+            android:exported = "true" >
+            <intent-filter>
+                <action
+                    android:name = "com.example.autocart.NotificationService"/>
+                <category android:name = "android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
 
     </application>
 
